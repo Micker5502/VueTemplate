@@ -17,7 +17,7 @@ export default class Home extends Vue {
 
     public async created() {
       await this.oidc.handleCallback();
-      this.$router.push({ path: '/home' });
+      this.$router.push({ path: '/' });
     } 
   
 }

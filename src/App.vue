@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div v-cloak id="app">
     <div id="nav">
       <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link>
@@ -20,7 +20,7 @@
   
   export default class App extends Vue{
     @Provide() private oidc: OpenIdConnectService = OpenIdConnectService.getInstance();
-
+    
   }
 </script>
 <style lang="less">

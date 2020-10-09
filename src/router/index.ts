@@ -22,6 +22,11 @@ Vue.use(VueRouter)
     path: '/Account/CallBack',
     name: 'CallBack',
     component: () => import(/* webpackChunkName: "about" */ '../views/CallBack.vue')
+  },
+  {
+    path: '/Account/SilentRenew',
+    name: 'SilentRenew',
+    component: () => import(/* webpackChunkName: "about" */ '../views/SilentRenew.vue')
   }
 ]
 

@@ -6,6 +6,7 @@ export class OpenIdConnectService{
     private userManager = new UserManager(openIdConnectSettings);
 
     private currentUser!: User | null;
+    private fin = false;
 
     public static getInstance(): OpenIdConnectService {
         if (!this.instance) {
@@ -17,36 +18,44 @@ export class OpenIdConnectService{
     private static instance: OpenIdConnectService;
     
 
-    private  constructor() {
+    private constructor() {
         // 清理过期的东西
         this.userManager.clearStaleState();
 
         this.userManager.getUser().then((user) => {
             if (user) {
                 this.currentUser = user;
+
             } else {
-                this.currentUser = null;
+                this.currentUser = null; 
             }
         }).catch((err) => {
             this.currentUser = null;
         });
-
+        
+        
         // 在建立（或重新建立）用户会话时引发
         this.userManager.events.addUserLoaded((user) => {
-            console.log('addUserLoaded', user);
+            //console.log('addUserLoaded', user);
             this.currentUser = user;
         });
-
+        
     }
 
+
+    
     // 当前用户是否登录
-    get userAvailavle(): boolean {
+    get userAvailable(): boolean {
         return !!this.currentUser;
     }
 
     // 获取当前用户信息
     get user(): User {
         return this.currentUser as User;
+    }
+
+    public  getUser(): Promise<User|null>{
+        return this.userManager.getUser();
     }
 
     // 触发登录

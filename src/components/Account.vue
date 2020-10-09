@@ -1,20 +1,41 @@
 <template>
     <div>
-        <button @if="this.$accountEngine.Login()" @click='this.$accountEngine.accountLogin()'>Login</button>
-        <button @click='this.$accountEngine.Logout()'>Logout</button>
-        <button @click='this.$accountEngine.Check()'>Check</button>
+        <button v-if="!isLogin" @click='Login()'>Login</button>
+        <button v-else @click='Logout()'>Logout</button>
     </div>
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue } from 'vue-property-decorator';
+import { OpenIdConnectService } from '@/services/auth/openIdConnectService';
+import { Component, Inject, Vue } from 'vue-property-decorator';
+
 @Component
 export default class Account extends Vue {
     
-    @Prop() private msg!: string;
-    private Login()
+    @Inject() private oidc!: OpenIdConnectService;
+    private isLogin = false;
+    private async Login()
     {
-        this.$accountEngine
+      console.log("Login");
+      await this.oidc.triggerSignIn();
+    }
+    private async Logout()
+    {
+      console.log("Logout");
+      await this.oidc.triggerSignOut();
+    }
+
+    private async UserAvailable() 
+    { 
+        return !this.oidc.userAvailable;
+    }
+    
+    public mounted() 
+    {
+        this.oidc.getUser().then((user)=>
+        {
+            this.isLogin = user!==null;
+        });
     }
 }
 
@@ -23,4 +44,3 @@ export default class Account extends Vue {
 <style scoped lang="less">
 
 </style>
-<script src=""></script>
