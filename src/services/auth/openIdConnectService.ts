@@ -6,9 +6,9 @@ export class OpenIdConnectService{
     private userManager = new UserManager(openIdConnectSettings);
 
     private currentUser!: User | null;
-    private fin = false;
 
     public static getInstance(): OpenIdConnectService {
+
         if (!this.instance) {
             this.instance = new OpenIdConnectService();
         }
@@ -21,9 +21,9 @@ export class OpenIdConnectService{
     private constructor() {
         // 清理过期的东西
         this.userManager.clearStaleState();
-
         this.userManager.getUser().then((user) => {
             if (user) {
+                
                 this.currentUser = user;
 
             } else {
@@ -36,9 +36,9 @@ export class OpenIdConnectService{
         
         // 在建立（或重新建立）用户会话时引发
         this.userManager.events.addUserLoaded((user) => {
-            //console.log('addUserLoaded', user);
             this.currentUser = user;
         });
+
         
     }
 
@@ -54,7 +54,8 @@ export class OpenIdConnectService{
         return this.currentUser as User;
     }
 
-    public  getUser(): Promise<User|null>{
+    public getUser(): Promise<User|null>{
+        
         return this.userManager.getUser();
     }
 

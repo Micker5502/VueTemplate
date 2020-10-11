@@ -40,9 +40,12 @@ export default class Account extends Vue {
     }
     public mounted() 
     {
+        this.oidc.handleSilentCallback();
+        console.log(this.oidc);
         this.oidc.getUser().then((user)=>
         {
             this.isLogin = user!==null;
+            console.log(user);
         });
     }
 }

@@ -3,6 +3,7 @@
     <div id="nav">
       <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link>
+      <button @click="asd()">asd</button>
     </div>
     <router-view/>
   </div>
@@ -18,7 +19,12 @@
   
   export default class App extends Vue{
     @Provide() private oidc: OpenIdConnectService = OpenIdConnectService.getInstance();
+    private asd()
+    {
+      console.log(this.oidc);
+    }
 
+    
   }
 </script>
 <style lang="less">
