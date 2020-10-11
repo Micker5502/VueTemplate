@@ -2,6 +2,7 @@
     <div>
         <button v-if="!isLogin" @click='Login()'>Login</button>
         <button v-else @click='Logout()'>Logout</button>
+        <button @click='Test()'>Test</button>
     </div>
 </template>
 
@@ -29,7 +30,14 @@ export default class Account extends Vue {
     { 
         return !this.oidc.userAvailable;
     }
-    
+    private async Test()
+    {
+        console.log(this.oidc.user.token_type + this.oidc.user.access_token);
+        this.$https.defaults.headers.common['Authorization'] =  this.oidc.user.token_type + " " + this.oidc.user.access_token;
+        const res: any = await this.$https.post(
+         this.$urls.version+ this.$urls.test);
+        console.log(res);
+    }
     public mounted() 
     {
         this.oidc.getUser().then((user)=>

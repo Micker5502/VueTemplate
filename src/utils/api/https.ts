@@ -1,9 +1,11 @@
+import { OpenIdConnectService } from '@/services/auth/openIdConnectService';
 import axios from "axios"
 
 let service: any={}
 
+
 service = axios.create({
-    baseURL: "/api",
+    baseURL: "https://localhost:5010",
     timeout:5000
 })
 

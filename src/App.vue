@@ -11,8 +11,6 @@
   import {Vue,Component,Provide  } from 'vue-property-decorator' 
   import {OpenIdConnectService} from "./services/auth/openIdConnectService";
   
- 
-
   @Component(
     {
     }
@@ -20,7 +18,7 @@
   
   export default class App extends Vue{
     @Provide() private oidc: OpenIdConnectService = OpenIdConnectService.getInstance();
-    
+
   }
 </script>
 <style lang="less">

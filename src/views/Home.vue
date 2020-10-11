@@ -20,5 +20,6 @@ import {Vue,Component,Inject  } from 'vue-property-decorator' ;
 export default class Home extends Vue {
    @Inject() private oidc!: OpenIdConnectService;
 
+    
 }
 </script>

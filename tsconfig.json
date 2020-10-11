@@ -19,7 +19,8 @@
     "paths": {
       "@/*": [
         "src/*"
-      ]
+      ],
+      "@/components": ["src/components"] // 添加这一行
     },
     "lib": [
       "esnext",
@@ -34,8 +35,12 @@
     "src/**/*.vue",
     "tests/**/*.ts",
     "tests/**/*.tsx"
+    
   ],
   "exclude": [
     "node_modules"
+  ],
+  "typeRoots": [
+    "./src"
   ]
 }
