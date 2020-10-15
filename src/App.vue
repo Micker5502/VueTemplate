@@ -1,17 +1,20 @@
 <template>
-  <div v-cloak id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
+   <div v-cloak id="app">
+     <v-app>
+
+        <component :is="layout">
+          <router-view/>
+        </component>
+
+      </v-app>
     <router-view/>
   </div>
 </template>
+
 <script lang="ts">
   import {Vue,Component,Provide  } from 'vue-property-decorator' 
   import {OpenIdConnectService} from "./services/auth/openIdConnectService";
   
- 
 
   @Component(
     {
@@ -20,10 +23,17 @@
   
   export default class App extends Vue{
     @Provide() private oidc: OpenIdConnectService = OpenIdConnectService.getInstance();
-    
+    default_layout = 'default'; 
+
+    get layout()
+    {
+       return (this.$route.meta.layout || this.default_layout) + '-layout'
+    }
   }
 </script>
+
 <style lang="less">
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -44,4 +54,3 @@
     }
   }
 }
-</style>
