@@ -3,7 +3,7 @@
     <div class="hello__hero">
       <mdc-layout-grid>
         <mdc-layout-cell desktop="12" tablet="8" phone="4">
-          <img class="hello__logo" src="../assets/logo.png" alt="Vue MDC Adapter">
+          <img class="hello__logo" src="require(../assets/logo.png)" alt="Vue MDC Adapter">
           <h1 class="hello__title">{{ title }}</h1>
           <p class="hello__blurb">
             <a href="https://github.com/webdenim/vue-cli-plugin-material" target="_blank" rel="noopener">vue-cli-plugin-material</a> is a Vue CLI plugin to help you get started with Material Design Components for Vue.js. It's created and maintained by <a href="https://twitter.com/rustemgareev" target="_blank" rel="noopener">Rustem Gareev</a> at <a href="https://www.webdenim.io/" target="_blank" rel="noopener">Webdenim</a>.

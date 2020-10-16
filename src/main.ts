@@ -11,7 +11,6 @@ import 'vuetify/dist/vuetify.min.css'
 import 'material-design-icons-iconfont/dist/material-design-icons.css'
 import '@mdi/font/css/materialdesignicons.css'
 
-
 Vue.component('default-layout',DefaultLayout)
 Vue.component('redirect-layout',DefaultRedirect)
 Vue.use(Vuetify)
