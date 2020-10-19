@@ -1,7 +1,8 @@
 <template>
 
 <div>
-    <v-navigation-drawer v-model="drawer" app clipped overflow>
+  <!-- Left Nav Bar -->
+  <v-navigation-drawer v-model="drawer" app clipped overflow>
     <v-list-item>
       <v-avatar><v-img :src="require('../assets/pikachu.png')" ></v-img></v-avatar>
       <v-list-item-content>
@@ -61,12 +62,19 @@
           <v-tab to="/about">
             <v-icon atl="Page">mdi-file-document-outline</v-icon>
           </v-tab>
-
+          <v-divider class="mx-4" vertical></v-divider>
+          <v-tab to="/about">
+            <v-icon atl="Page">mdi-file-document-outline</v-icon>
+          </v-tab>
+          <v-divider class="mx-4" vertical></v-divider>
+          <v-tab to="/about">
+            <v-icon atl="Page">mdi-file-document-outline</v-icon>
+          </v-tab>
         </v-tabs>
 
 
       <v-spacer></v-spacer>
-
+      
       <v-btn icon>
         <v-icon>mdi-heart</v-icon>
       </v-btn>
