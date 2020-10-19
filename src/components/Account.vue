@@ -2,7 +2,12 @@
 <div>
    <button v-if="!isLogin" @click='Login()'>Login</button>
         <button v-else @click='Logout()'>Logout</button>
+<<<<<<< HEAD
 </div>
+=======
+        <button @click='Test()'>Test</button>
+    </div>
+>>>>>>> 039a8b919b18a494d36c300eca3b204a0d55c6bb
 </template>
 
 <script lang="ts">
@@ -40,7 +45,18 @@ export default class Account extends Vue {
       window.location.href = "https://localhost:5001/Account/Register"
       this.oidc.triggerSignOut();
     }
+<<<<<<< HEAD
 
+=======
+    private async Test()
+    {
+        console.log(this.oidc.user.token_type + this.oidc.user.access_token);
+        this.$https.defaults.headers.common['Authorization'] =  this.oidc.user.token_type + " " + this.oidc.user.access_token;
+        const res: any = await this.$https.post(
+         this.$urls.version+ this.$urls.test);
+        console.log(res);
+    }
+>>>>>>> 039a8b919b18a494d36c300eca3b204a0d55c6bb
     public mounted() 
     {
         

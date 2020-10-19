@@ -74,6 +74,7 @@ export class OpenIdConnectService{
 
     // 自动刷新回调
     public async handleSilentCallback() {
+        await this.userManager.revokeAccessToken();
         const user: any = await this.userManager.signinSilentCallback();
         console.log('handleSilentCallback');
     }
@@ -81,6 +82,9 @@ export class OpenIdConnectService{
     // 触发登出
     public async triggerSignOut() {
         console.log('triggerSignOut');
+        await this.userManager.revokeAccessToken();
         await this.userManager.signoutRedirect();
+        
     }
+
 }

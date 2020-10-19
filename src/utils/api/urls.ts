@@ -1,5 +1,7 @@
+// url的链接
 export const urls: object = {
-    login: "login"
-}
-
-export default urls
+    version: "v1",
+    test: "/Test/Test",
+    getArticleList: "getArticleList",
+  };
+  export default urls;
