@@ -1,5 +1,6 @@
 <template>
   <div>
+    <v-switch v-model="$vuetify.theme.dark" primary label="Dark"></v-switch>
     <v-row>
       <v-col>
         <v-card elevation="2">
@@ -23,9 +24,7 @@
     </v-row>
     <v-row>
       <v-col>
-        <v-card elevation="2">
-          Home4
-        </v-card>
+        <Topic/>
       </v-col> 
     </v-row>
   </div>
@@ -35,10 +34,15 @@
 
 import {OpenIdConnectService} from "../services/auth/openIdConnectService";
 import {Vue,Component,Inject  } from 'vue-property-decorator' ;
+import Topic from '@/components/card/Topic.vue';
 
 @Component(
   {
-
+      components:
+      {
+          
+          Topic
+      }
   })
 export default class Home extends Vue {
    @Inject() private oidc!: OpenIdConnectService;
