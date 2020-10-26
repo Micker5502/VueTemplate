@@ -4,7 +4,7 @@
   <!-- Left Nav Bar -->
   <v-navigation-drawer v-model="drawer" app clipped overflow>
     <v-list-item>
-      <v-avatar><v-img :src="require('../assets/pikachu.png')" ></v-img></v-avatar>
+      <v-avatar ><v-img :src="require('../assets/pikachu.png')" ></v-img></v-avatar>
       <v-list-item-content>
         <v-list-item-title class="title">
           Micker
@@ -16,34 +16,32 @@
     </v-list-item>
 
     <v-divider></v-divider>
+      <v-list dense nav >
+        <v-list-item link  to="/">
+            <v-list-item-icon>
+                <v-icon>mdi-home</v-icon>
+            </v-list-item-icon>
+          
+          <v-list-item-content>
+            <v-list-item-title>Home</v-list-item-title>
+          </v-list-item-content>
 
-    <v-list dense nav>
-      <v-list-item link  to="/">
-          <v-list-item-icon>
-              <v-icon>mdi-home</v-icon>
-          </v-list-item-icon>
-        
-        <v-list-item-content>
-          <v-list-item-title>Home</v-list-item-title>
-        </v-list-item-content>
+        </v-list-item>
+              <v-list-item link  to="/about">
 
-      </v-list-item>
-            <v-list-item link  to="/about">
-
-          <v-list-item-icon>
-              <v-icon>mdi-campfire</v-icon>
-          </v-list-item-icon>
-        
-        <v-list-item-content>
-          <v-list-item-title>About</v-list-item-title>
-        </v-list-item-content>
-      </v-list-item>
-    </v-list>
-
+            <v-list-item-icon>
+                <v-icon>mdi-campfire</v-icon>
+            </v-list-item-icon>
+          
+          <v-list-item-content>
+            <v-list-item-title>About</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+      </v-list>
   </v-navigation-drawer>
 
     <v-app-bar color="deep-purple accent-4" dark app clipped-left>
-      <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
+      <v-app-bar-nav-icon  @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
       <router-link to="/"><v-img max-height="40" max-width="40" :src="require('../assets/pikachu.png')" ></v-img></router-link>
       <v-spacer></v-spacer>
       <!-- <v-toolbar-title>Page title</v-toolbar-title> -->
@@ -54,7 +52,7 @@
           <v-tab>Tab 2</v-tab>
           <v-tab>Tab 3</v-tab>
         </v-tabs> -->
-      <v-tabs centered>
+      <v-tabs centered v-show="BreakpointSM">
           <v-tab to="/">
             <v-icon atl="Page">mdi-home</v-icon>
           </v-tab>
@@ -75,7 +73,7 @@
 
       <v-spacer></v-spacer>
       
-      <v-btn icon>
+      <v-btn icon @click="check()">
         <v-icon>mdi-heart</v-icon>
       </v-btn>
 
@@ -119,17 +117,23 @@ export default class AppBar extends Vue {
     private isLogin = false;
     private user = this.oidc.getUser();
     private drawer = true;
-        
+
     @Watch('drawer')
     nameChanged(newVal: boolean) {
       
       this.drawer = newVal;
-      console.log(this.drawer);
     }
 
     get User()
     {
         return this.user;
+    }
+
+    get BreakpointSM()
+    {
+      console.log(!this.$vuetify.breakpoint.smOnly);
+
+      return !this.$vuetify.breakpoint.smAndDown;
     }
     
   
@@ -159,6 +163,12 @@ export default class AppBar extends Vue {
         {
             this.isLogin = user!==null;
         });
+    }
+
+
+    private check()
+    {
+      console.log(this.$vuetify.breakpoint.smOnly);
     }
 
 

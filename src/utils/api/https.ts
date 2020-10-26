@@ -1,4 +1,3 @@
-import { OpenIdConnectService } from '@/services/auth/openIdConnectService';
 import axios from "axios"
 
 let service: any={}
