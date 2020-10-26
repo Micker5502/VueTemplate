@@ -17,13 +17,19 @@
   
   export default class App extends Vue{
     @Provide() private oidc: OpenIdConnectService = OpenIdConnectService.getInstance();
-<<<<<<< HEAD
+default_layout = 'default'; 
     private asd()
     {
       console.log(this.oidc);
     }
-
     
+    
+    get layout()
+    {
+       return (this.$route.meta.layout || this.default_layout) + '-layout'
+
+    }
+
   }
 </script>
 <style lang="less">
@@ -34,31 +40,16 @@
   text-align: center;
   color: #2c3e50;
 }
-
 #nav {
   padding: 30px;
+    a {
+      font-weight: bold;
+      color: #2c3e50;
+      &.router-link-exact-active {
+        color: #42b983;
 
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-=======
-<<<<<<< HEAD
-    default_layout = 'default'; 
-
-    get layout()
-    {
-       return (this.$route.meta.layout || this.default_layout) + '-layout'
->>>>>>> 2ef15c335b0a42130346b8e95f53f9901b0b8a51
     }
-=======
-
->>>>>>> 039a8b919b18a494d36c300eca3b204a0d55c6bb
+    }
   }
-</script>
-
-
-
-
+  
+</style>
