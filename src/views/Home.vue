@@ -1,21 +1,44 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <Account/>
+  <div>
+    <v-row>
+      <v-col>
+        <v-card elevation="2">
+          Home1
+        </v-card>
+      </v-col> 
+    </v-row>
+    <v-row>
+      <v-col>
+        <v-card elevation="2">
+          Home2
+        </v-card>
+      </v-col> 
+    </v-row>
+    <v-row>
+      <v-col>
+        <v-card elevation="2">
+          Home3
+        </v-card>
+      </v-col> 
+    </v-row>
+    <v-row>
+      <v-col>
+        <v-card elevation="2">
+          Home4
+        </v-card>
+      </v-col> 
+    </v-row>
   </div>
 </template>
 
 <script lang="ts">
-import Account from '@/components/Account.vue'
+
 import {OpenIdConnectService} from "../services/auth/openIdConnectService";
 import {Vue,Component,Inject  } from 'vue-property-decorator' ;
 
 @Component(
   {
-      components:
-      {
-          Account
-      }
+
   })
 export default class Home extends Vue {
    @Inject() private oidc!: OpenIdConnectService;

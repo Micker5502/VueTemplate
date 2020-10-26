@@ -1,13 +1,11 @@
 <template>
-  <div v-cloak id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-      <button @click="asd()">asd</button>
-    </div>
-    <router-view/>
-  </div>
+  <v-app>
+    <component :is="layout">
+      <router-view/>
+    </component>
+  </v-app>
 </template>
+
 <script lang="ts">
   import {Vue,Component,Provide  } from 'vue-property-decorator' 
   import {OpenIdConnectService} from "./services/auth/openIdConnectService";
@@ -19,6 +17,7 @@
   
   export default class App extends Vue{
     @Provide() private oidc: OpenIdConnectService = OpenIdConnectService.getInstance();
+<<<<<<< HEAD
     private asd()
     {
       console.log(this.oidc);
@@ -45,7 +44,21 @@
 
     &.router-link-exact-active {
       color: #42b983;
+=======
+<<<<<<< HEAD
+    default_layout = 'default'; 
+
+    get layout()
+    {
+       return (this.$route.meta.layout || this.default_layout) + '-layout'
+>>>>>>> 2ef15c335b0a42130346b8e95f53f9901b0b8a51
     }
+=======
+
+>>>>>>> 039a8b919b18a494d36c300eca3b204a0d55c6bb
   }
-}
-</style>
+</script>
+
+
+
+

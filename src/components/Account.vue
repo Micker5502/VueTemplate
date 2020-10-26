@@ -1,6 +1,6 @@
 <template>
-    <div>
-        <button v-if="!isLogin" @click='Login()'>Login</button>
+<div>
+   <button v-if="!isLogin" @click='Login()'>Login</button>
         <button v-else @click='Logout()'>Logout</button>
         <button @click='Test()'>Test</button>
     </div>
@@ -8,6 +8,7 @@
 
 <script lang="ts">
 import { OpenIdConnectService } from '@/services/auth/openIdConnectService';
+import { User } from 'oidc-client';
 import { Component, Inject, Vue } from 'vue-property-decorator';
 
 @Component
@@ -15,6 +16,14 @@ export default class Account extends Vue {
     
     @Inject() private oidc!: OpenIdConnectService;
     private isLogin = false;
+    private user = this.oidc.getUser();
+    private gg: User | null = null;
+    
+    get User()
+    {
+        return this.user;
+    }
+    
     private async Login()
     {
       console.log("Login");
@@ -26,9 +35,11 @@ export default class Account extends Vue {
       await this.oidc.triggerSignOut();
     }
 
-    private async UserAvailable() 
-    { 
-        return !this.oidc.userAvailable;
+    private Register()
+    {
+      console.log("Register");
+      window.location.href = "https://localhost:5001/Account/Register"
+      this.oidc.triggerSignOut();
     }
     private async Test()
     {
@@ -40,11 +51,11 @@ export default class Account extends Vue {
     }
     public mounted() 
     {
-        this.oidc.handleSilentCallback();
-        console.log(this.oidc);
+        
         this.oidc.getUser().then((user)=>
         {
             this.isLogin = user!==null;
+            this.gg = user;
             console.log(user);
         });
     }

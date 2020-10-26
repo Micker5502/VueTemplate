@@ -11,7 +11,7 @@ import {Vue,Component,Inject  } from 'vue-property-decorator' ;
 
   })
 
-export default class Home extends Vue {
+export default class CallBack extends Vue {
    
   @Inject() private oidc!: OpenIdConnectService;
 

@@ -11,12 +11,12 @@ import {Vue,Component,Inject  } from 'vue-property-decorator' ;
 
   })
 
-export default class SilentRenew extends Vue {
+export default class SignInCheck extends Vue {
    
   @Inject() private oidc!: OpenIdConnectService;
 
     public async created() {
-      await this.oidc.handleSilentCallback();
+      await this.oidc.triggerSignIn();
     } 
   
 }
