@@ -1,6 +1,7 @@
 <template>
   <div>
-    <v-switch v-model="$vuetify.theme.dark" primary label="Dark"></v-switch>
+
+
     <v-row>
       <v-col>
         <Topic v-bind:haveImage='false'/>
@@ -21,6 +22,8 @@
         <Topic/>
       </v-col> 
     </v-row>
+
+    
   </div>
 </template>
 

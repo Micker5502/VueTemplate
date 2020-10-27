@@ -55,7 +55,7 @@
           <v-tab>Tab 3</v-tab>
         </v-tabs> -->
         
-      <v-tabs centered>
+      <v-tabs centered v-show="BreakPointSmDown">
           <v-tab to="/">
             <v-icon atl="Page">mdi-home</v-icon>
           </v-tab>
@@ -131,7 +131,10 @@ export default class AppBar extends Vue {
         return this.user;
     }
     
-  
+    get BreakPointSmDown()
+    {
+        return!this.$vuetify.breakpoint.smAndDown; 
+    }
 
     private async Login()
     {
