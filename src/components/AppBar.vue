@@ -64,7 +64,7 @@
             <v-icon atl="Page">mdi-file-document-outline</v-icon>
           </v-tab>
           <v-divider class="mx-4" vertical></v-divider>
-          <v-tab to="/123">
+          <v-tab to="/Profile">
             <v-icon atl="Page">mdi-file-document-outline</v-icon>
           </v-tab>
           <v-divider class="mx-4" vertical></v-divider>
