@@ -52,7 +52,8 @@
           <v-tab>Tab 2</v-tab>
           <v-tab>Tab 3</v-tab>
         </v-tabs> -->
-      <v-tabs centered v-show="BreakpointSM">
+        
+      <v-tabs centered v-show="BreakPointSmDown">
           <v-tab to="/">
             <v-icon atl="Page">mdi-home</v-icon>
           </v-tab>
@@ -61,11 +62,11 @@
             <v-icon atl="Page">mdi-file-document-outline</v-icon>
           </v-tab>
           <v-divider class="mx-4" vertical></v-divider>
-          <v-tab to="/about">
+          <v-tab to="/Profile">
             <v-icon atl="Page">mdi-file-document-outline</v-icon>
           </v-tab>
           <v-divider class="mx-4" vertical></v-divider>
-          <v-tab to="/about">
+          <v-tab to="/asd">
             <v-icon atl="Page">mdi-file-document-outline</v-icon>
           </v-tab>
         </v-tabs>
@@ -80,9 +81,6 @@
       <v-btn icon>
         <v-icon>mdi-magnify</v-icon>
       </v-btn>
-
-      
-
 
       <v-menu left bottom offset-y>
         <template v-slot:activator="{ on, attrs }">
@@ -99,6 +97,7 @@
         </v-list>
       </v-menu>
     </v-app-bar>
+    
 </div>
         <!-- <button v-if="!isLogin" @click='Login()'>Login</button>
         <button v-else @click='Logout()'>Logout</button> -->
@@ -136,7 +135,10 @@ export default class AppBar extends Vue {
       return !this.$vuetify.breakpoint.smAndDown;
     }
     
-  
+    get BreakPointSmDown()
+    {
+        return!this.$vuetify.breakpoint.smAndDown; 
+    }
 
     private async Login()
     {
