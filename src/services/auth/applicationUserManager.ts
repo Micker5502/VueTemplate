@@ -1,3 +1,5 @@
+import { WebStorageStateStore } from 'oidc-client';
+
 export const identityServerBase = 'https://localhost:5001';
 
 export const apiBase = 'https://localhost:5002';
@@ -14,5 +16,6 @@ export const openIdConnectSettings = {
     response_type: "id_token token",
     scope: "openid profile test offline_access",
     post_logout_redirect_uri: vueBase,
-    automaticSilentRenew: true
+    automaticSilentRenew: true,
+    userStore: new WebStorageStateStore({ store: window.localStorage }),//cookies
 };
