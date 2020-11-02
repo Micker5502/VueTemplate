@@ -25,7 +25,7 @@ Vue.prototype.$oidc  = OpenIdConnectService.getInstance();
 
 new Vue({
   vuetify : new Vuetify(),
-  router,
   store,
+  router,
   render: h => h(App)
 }).$mount('#app')

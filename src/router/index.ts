@@ -1,7 +1,8 @@
 import Vue from 'vue'
 import VueRouter, { RouteConfig } from 'vue-router'
 import Home from '../views/Home.vue'
-
+import Topic from '@/components/card/Topic.vue'
+import Topics from '@/components/main/Topics.vue'
 Vue.use(VueRouter)
 
   const routes: Array<RouteConfig> = [
@@ -18,7 +19,17 @@ Vue.use(VueRouter)
   {
     path: '/Profile',
     name: 'Profile',
-    component: () => import(/* webpackChunkName: "about" */ '../views/Profile.vue')
+    component: () => import(/* webpackChunkName: "about" */ '../views/Profile.vue'),
+    children: [
+      {
+        path: '',
+        component: Topics,
+      },
+      {
+        path: 'detail',
+        component: Topic
+      }
+    ]
   },
   {
     path: '/Account/CallBack',

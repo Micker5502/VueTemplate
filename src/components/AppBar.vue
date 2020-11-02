@@ -164,6 +164,7 @@ export default class AppBar extends Vue {
         this.oidc.getUser().then((user)=>
         {
             this.isLogin = user!==null;
+            console.log(user);
         });
     }
 

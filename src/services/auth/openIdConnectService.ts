@@ -37,6 +37,7 @@ export class OpenIdConnectService{
         // 在建立（或重新建立）用户会话时引发
         this.userManager.events.addUserLoaded((user) => {
             this.currentUser = user;
+            console.log("reload");
         });
 
         
@@ -75,7 +76,7 @@ export class OpenIdConnectService{
 
     // 自动刷新回调
     public async handleSilentCallback() {
-        await this.userManager.revokeAccessToken();
+        //await this.userManager.revokeAccessToken();
         const user: any = await this.userManager.signinSilentCallback();
         console.log('handleSilentCallback');
     }

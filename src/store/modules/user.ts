@@ -1,18 +1,21 @@
 import {VuexModule, Module,getModule,  Mutation, Action } from "vuex-module-decorators"
 import store from '@/store'
-import { User, UserLogin } from "../model/users"
+import { User } from "../model/users"
+import { BaseModelResp } from "@/store/model/BaseModel"
 
 @Module({
-    name: "users",
-    store,
-    dynamic: true
+    namespaced: true,
+    name: "user",
 })
 
-class UsersModule extends VuexModule{
-    user: User | null = null
+class UserModule extends VuexModule{
+    user: User | null  = null
+    
+    
     @Mutation
     setUser(user: User){ 
-        this.user = user
+        
+        this.user = user;
     }
 
     get userDetail()
@@ -20,19 +23,20 @@ class UsersModule extends VuexModule{
         return this.user
     }
 
-    @Action({commit: 'setUser'})
-    async login(userLogin: UserLogin): Promise<User>
+    @Action({commit: 'setUser',rawError: true})
+    async getAccount(account: BaseModelResp<User>): Promise<User>
     {
-        const tmp: User = {
-            username: "test22",
-            email: "gg@email.com",
-            age: "11",
-            token: "22"
+        const user: User = {
+            userName: account.content.userName,
+            email: account.content.email,
+            nickName: account.content.nickName,
         }
-        return tmp
+
+        return user
     }
 
 }
 
-export default getModule(UsersModule)
+export default UserModule
+
 

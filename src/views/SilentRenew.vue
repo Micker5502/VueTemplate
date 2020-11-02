@@ -16,7 +16,8 @@ export default class SilentRenew extends Vue {
   @Inject() private oidc!: OpenIdConnectService;
 
     public async created() {
-      await this.oidc.handleSilentCallback();
+      await this.$oidc.handleSilentCallback();
+      console.log(this.$oidc.user);
     } 
   
 }
