@@ -1,47 +1,40 @@
 <template>
-    <div>
-        <button @click="add()">Add</button>
-        <v-sheet>
-            <v-skeleton-loader
-            v-if="loading"
-            type="article"
-            >
-            
-                
-            </v-skeleton-loader>
+  <div>
+    <button @click="add()">Add</button>
+    <v-sheet>
+      <v-skeleton-loader v-if="loading" type="article"> </v-skeleton-loader>
 
-        <div v-else :is="topic.component" v-for="topic in topics" :key="topic.count"></div>
-        </v-sheet>
-    </div>    
+      <div
+        v-else
+        :is="topic.component"
+        v-for="topic in topics"
+        :key="topic.count"
+        v-bind:haveImage='true'
+      ></div>
+    </v-sheet>
+  </div>
 </template>
 
 <script lang="ts">
-import { OpenIdConnectService } from '@/services/auth/openIdConnectService';
-import { Component, Inject, Vue } from 'vue-property-decorator';
-import Topic from '@/components/card/Topic.vue';
+import { OpenIdConnectService } from "@/services/auth/openIdConnectService";
+import { Component, Inject, Vue } from "vue-property-decorator";
+import Topic from "@/components/card/Topic.vue";
 
-
-
-@Component(
-  {
-      components:
-      {
-          Topic
-      }
-  })
-
+@Component({
+  components: {
+    Topic,
+  },
+})
 export default class Topics extends Vue {
-    @Inject() private oidc!: OpenIdConnectService;
-    private topics: any = []
-    private count = 0
-    private loading = true
-    private add()
-    {
-        this.count = this.count+1;
-        this.loading=false;
-        this.topics.push({"component":Topic,"count":this.count});
-        console.log(this.topics);
-    }
-    
+  @Inject() private oidc!: OpenIdConnectService;
+  private topics: any = [];
+  private count = 0;
+  private loading = true;
+  private add() {
+    this.count = this.count + 1;
+    this.loading = false;
+    this.topics.push({ component: Topic, count: this.count });
+    console.log(this.topics);
+  }
 }
 </script>
