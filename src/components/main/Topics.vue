@@ -1,7 +1,17 @@
 <template>
     <div>
         <button @click="add()">Add</button>
-        <div :is="topic.component" v-for="topic in topics" :key="topic.count"></div>
+        <v-sheet>
+            <v-skeleton-loader
+            v-if="loading"
+            type="article"
+            >
+            
+                
+            </v-skeleton-loader>
+
+        <div v-else :is="topic.component" v-for="topic in topics" :key="topic.count"></div>
+        </v-sheet>
     </div>    
 </template>
 
@@ -24,9 +34,11 @@ export default class Topics extends Vue {
     @Inject() private oidc!: OpenIdConnectService;
     private topics: any = []
     private count = 0
+    private loading = true
     private add()
     {
         this.count = this.count+1;
+        this.loading=false;
         this.topics.push({"component":Topic,"count":this.count});
         console.log(this.topics);
     }

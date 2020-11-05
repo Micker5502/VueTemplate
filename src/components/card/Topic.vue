@@ -1,5 +1,10 @@
 <template>
     <div>
+        <v-skeleton-loader
+        :loading="false"
+        height="94"
+        type="list-item-two-line"
+        >
         <v-row >
             <v-col>
                 <v-card >
@@ -73,7 +78,7 @@
 
                         <v-card-actions style="padding:0px;">
                             <v-list-item> 
-                                <v-btn small text @click="test2()">
+                                <v-btn small text @click="showCommentBox()">
                                     回復
                                 </v-btn>
                                 <v-divider class="mx-4" vertical></v-divider>
@@ -104,11 +109,7 @@
 
                         <v-divider class="mx-4" ></v-divider>
 
-                        <v-container fluid>
-
-                            <Comments></Comments>
-                        </v-container>
-                        <v-container fluid>
+                        <v-container fluid v-if="commentBox">
                              <v-row no-gutters>
                                 <v-col class="col-1" style="padding-left:0px;">
                                 <v-avatar size="32" color="grey darken-3">
@@ -132,9 +133,16 @@
                                 </v-col>
                             </v-row>
                         </v-container>
+
+                        <v-container fluid>
+
+                            <Comments></Comments>
+                        </v-container>
+
                 </v-card>
             </v-col>
         </v-row>
+        </v-skeleton-loader>
     </div>    
     
 </template>
@@ -161,6 +169,7 @@ export default class Topic extends Vue {
     haveImage: boolean|undefined;
     
     private isLogin = false;
+    private commentBox = false;
 
     private async test()
     {
@@ -185,6 +194,11 @@ export default class Topic extends Vue {
     private show()
     {
         console.log(userModule.userDetail);
+    }
+
+    private showCommentBox()
+    {
+        this.commentBox = true;
     }
     
 }
